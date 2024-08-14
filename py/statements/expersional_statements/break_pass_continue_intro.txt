@@ -1,0 +1,12 @@
+Using loops in Python automates and repeats the tasks in an efficient manner. 
+But sometimes, there may arise a condition where you want to exit the loop completely, 
+skip an iteration or ignore that condition. These can be done by loop control statements. 
+Loop control statements change execution from their normal sequence. When execution leaves a scope, 
+all automatic objects that were created in that scope are destroyed. 
+
+Python supports the following control statements:
+
+Break statement
+Continue statement
+Pass statement
+

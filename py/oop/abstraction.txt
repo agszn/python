@@ -1,0 +1,73 @@
+In Python's Abstract Base Classes (ABCs), there are several types of methods used to define and work with abstract classes and their subclasses:
+
+Abstract Methods:
+Abstract methods are methods declared in an abstract base class but have no implementation in the base class itself.
+Subclasses of the abstract base class must provide concrete implementations for these abstract methods, or they will be marked as abstract methods.
+Abstract methods are defined using the @abstractmethod decorator.
+Example:
+
+python
+Copy code
+from abc import ABC, abstractmethod
+
+class MyAbstractClass(ABC):
+    @abstractmethod
+    def my_abstract_method(self):
+        pass
+Concrete Methods:
+Concrete methods are regular methods in an abstract base class that have an implementation.
+Subclasses can use these methods as they are or override them if needed.
+Example:
+
+python
+Copy code
+from abc import ABC, abstractmethod
+
+class MyAbstractClass(ABC):
+    def concrete_method(self):
+        return "This is a concrete method."
+
+class MySubclass(MyAbstractClass):
+    pass
+
+obj = MySubclass()
+result = obj.concrete_method()
+Class Methods:
+Class methods in an abstract base class can be used to define behavior that is specific to the class itself.
+They can be overridden in subclasses to provide different class-level behavior.
+Example:
+
+python
+Copy code
+from abc import ABC, abstractmethod
+
+class MyAbstractClass(ABC):
+    @classmethod
+    def class_method(cls):
+        return f"This is a class method in {cls.__name__}."
+
+class MySubclass(MyAbstractClass):
+    pass
+
+result = MySubclass.class_method()
+Static Methods:
+Static methods in an abstract base class are methods that do not depend on the instance or class and are defined with the @staticmethod decorator.
+Subclasses can use these static methods as they are or override them if needed.
+Example:
+
+python
+Copy code
+from abc import ABC, abstractmethod
+
+class MyAbstractClass(ABC):
+    @staticmethod
+    def static_method():
+        return "This is a static method."
+
+class MySubclass(MyAbstractClass):
+    pass
+
+result = MySubclass.static_method()
+These are the common types of methods you can use in Python's Abstract Base Classes. Abstract methods are a central concept in ABCs as they ensure that specific behavior is implemented in subclasses. Concrete, class, and static methods provide additional flexibility and utility in abstract classes and their subclasses.
+
+

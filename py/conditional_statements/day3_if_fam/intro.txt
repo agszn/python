@@ -1,0 +1,9 @@
+Decision-making statements in programming languages decide the direction(Control Flow) of the flow of program execution. 
+
+Types of Control Flow in Python
+In Python programming language, the type of control flow statements is as follows:
+
+The if statement
+The if-else statement
+The nested-if statement
+The if-elif-else ladder
