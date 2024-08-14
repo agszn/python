@@ -1,0 +1,557 @@
+Here’s a summary of some of the most important data structures, including their basic operations and typical use cases. I've included Python code examples for some of these data structures.
+
+### 1. **Array**
+
+- **Description**: A collection of elements stored in contiguous memory locations. Elements are accessed via indices.
+- **Operations**: Access, insertion, deletion, traversal.
+
+```python
+# Example of an array (list in Python)
+arr = [1, 2, 3, 4, 5]
+print(arr[2])  # Access element at index 2
+arr.append(6)  # Insert element at the end
+arr.remove(4)  # Remove element with value 4
+```
+
+### 2. **Linked List**
+
+- **Description**: A collection of nodes where each node contains data and a reference (link) to the next node.
+- **Operations**: Insertion, deletion, traversal.
+
+**Singly Linked List:**
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        if not self.head:
+            self.head = Node(data)
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = Node(data)
+
+    def print_list(self):
+        current = self.head
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
+
+# Example usage
+sll = SinglyLinkedList()
+sll.append(1)
+sll.append(2)
+sll.append(3)
+sll.print_list()
+```
+
+### 3. **Doubly Linked List**
+
+- **Description**: A linked list where each node contains a reference to both the next and the previous node.
+- **Operations**: Insertion, deletion, traversal.
+
+**Doubly Linked List:**
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+        last = self.head
+        while last.next:
+            last = last.next
+        last.next = new_node
+        new_node.prev = last
+
+    def print_list(self):
+        current = self.head
+        while current:
+            print(current.data, end=" <-> ")
+            current = current.next
+        print("None")
+
+# Example usage
+dll = DoublyLinkedList()
+dll.append(1)
+dll.append(2)
+dll.append(3)
+dll.print_list()
+```
+
+### 4. **Stack**
+
+- **Description**: A collection of elements that follows Last In First Out (LIFO) principle.
+- **Operations**: Push, pop, peek (top), is_empty.
+
+```python
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[-1]
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+# Example usage
+stack = Stack()
+stack.push(1)
+stack.push(2)
+print(stack.peek())  # 2
+stack.pop()
+print(stack.peek())  # 1
+```
+
+### 5. **Queue**
+
+- **Description**: A collection of elements that follows First In First Out (FIFO) principle.
+- **Operations**: Enqueue, dequeue, peek (front), is_empty.
+
+```python
+from collections import deque
+
+class Queue:
+    def __init__(self):
+        self.items = deque()
+
+    def enqueue(self, item):
+        self.items.append(item)
+
+    def dequeue(self):
+        return self.items.popleft()
+
+    def peek(self):
+        return self.items[0]
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+# Example usage
+queue = Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+print(queue.peek())  # 1
+queue.dequeue()
+print(queue.peek())  # 2
+```
+
+### 6. **Hash Table**
+
+- **Description**: A data structure that maps keys to values using a hash function.
+- **Operations**: Insert, delete, search.
+
+```python
+class HashTable:
+    def __init__(self):
+        self.table = {}
+
+    def insert(self, key, value):
+        self.table[key] = value
+
+    def delete(self, key):
+        if key in self.table:
+            del self.table[key]
+
+    def search(self, key):
+        return self.table.get(key, None)
+
+# Example usage
+ht = HashTable()
+ht.insert("key1", "value1")
+print(ht.search("key1"))  # value1
+ht.delete("key1")
+print(ht.search("key1"))  # None
+```
+
+### 7. **Binary Tree**
+
+- **Description**: A tree data structure in which each node has at most two children, referred to as the left child and the right child.
+- **Operations**: Insertion, deletion, traversal (in-order, pre-order, post-order).
+
+**Binary Tree Traversal:**
+```python
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+
+def in_order_traversal(root):
+    if root:
+        in_order_traversal(root.left)
+        print(root.value, end=" ")
+        in_order_traversal(root.right)
+
+def pre_order_traversal(root):
+    if root:
+        print(root.value, end=" ")
+        pre_order_traversal(root.left)
+        pre_order_traversal(root.right)
+
+def post_order_traversal(root):
+    if root:
+        post_order_traversal(root.left)
+        post_order_traversal(root.right)
+        print(root.value, end=" ")
+
+# Example usage
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+print("In-order traversal:")
+in_order_traversal(root)  # 4 2 5 1 3
+
+print("\nPre-order traversal:")
+pre_order_traversal(root)  # 1 2 4 5 3
+
+print("\nPost-order traversal:")
+post_order_traversal(root)  # 4 5 2 3 1
+```
+
+### 8. **Binary Search Tree (BST)**
+
+- **Description**: A binary tree in which each node has a key greater than all keys in its left subtree and smaller than all keys in its right subtree.
+- **Operations**: Insertion, deletion, search.
+
+```python
+class BSTNode:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+
+def insert(root, key):
+    if root is None:
+        return BSTNode(key)
+    else:
+        if root.value < key:
+            root.right = insert(root.right, key)
+        else:
+            root.left = insert(root.left, key)
+    return root
+
+def search(root, key):
+    if root is None or root.value == key:
+        return root
+    if root.value < key:
+        return search(root.right, key)
+    return search(root.left, key)
+
+# Example usage
+root = BSTNode(10)
+root = insert(root, 5)
+root = insert(root, 15)
+print(search(root, 15).value)  # 15
+```
+
+### 9. **Heap**
+
+- **Description**: A specialized tree-based data structure that satisfies the heap property (max-heap or min-heap).
+- **Operations**: Insert, delete, get_max (for max-heap) or get_min (for min-heap).
+
+**Min-Heap Implementation:**
+```python
+import heapq
+
+class MinHeap:
+    def __init__(self):
+        self.heap = []
+
+    def insert(self, item):
+        heapq.heappush(self.heap, item)
+
+    def extract_min(self):
+        return heapq.heappop(self.heap)
+
+    def get_min(self):
+        return self.heap[0]
+
+# Example usage
+min_heap = MinHeap()
+min_heap.insert(3)
+min_heap.insert(1)
+min_heap.insert(2)
+print(min_heap.get_min())  # 1
+print(min_heap.extract_min())  # 1
+```
+
+### 10. **Trie**
+
+- **Description**: A tree-like data structure that stores a dynamic set of strings where the keys are usually strings.
+- **Operations**: Insert, search, delete.
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_of_word = True
+
+    def search(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end_of_word
+
+    def delete(self, word):
+        def _delete(node, word, index):
+            if index == len(word):
+                if not node.is_end_of_word:
+                    return False
+                node.is_end_of_word = False
+                return len(node.children) == 0
+
+            char = word[index]
+            if char not in node.children:
+                return False
+
+            child_node = node.children[char]
+            can_delete_child = _delete(child_node, word, index + 1)
+
+            if can_delete_child:
+                del node.children[char]
+                return not node.is_end_of_word and len(node.children) == 0
+
+            return False
+
+        _delete(self.root, word, 0)
+
+# Example usage
+trie = Trie()
+trie.insert("hello")
+print(trie.search("hello"))  # True
+trie.delete("hello")
+print(trie.search("hello"))  # False
+```
+
+### 11. **Graph**
+
+- **Description**: A collection of nodes (vertices) connected by edges. Can be directed or undirected, weighted or unweighted.
+- **Operations**: Add vertex, add edge, remove vertex, remove edge, traversal.
+
+**Graph Implementation (Adjacency List):**
+```python
+class Graph:
+    def __init__(self):
+        self.graph = {}
+
+    def add_vertex(self, vertex):
+        if vertex not in self.graph:
+            self.graph[vertex] = []
+
+    def add_edge(self, vertex1, vertex2):
+        if vertex1 in self.graph and vertex2 in self.graph:
+            self.graph[vertex1].append(vertex2)
+            self.graph[vertex2].append(vertex1)
+
+    def remove_edge(self, vertex1, vertex2):
+        if vertex1 in self.graph and vertex2 in self.graph:
+            self.graph[vertex1].remove(vertex2)
+            self.graph[vertex2].remove(vertex1)
+
+    def remove_vertex(self, vertex):
+        if vertex in self.graph:
+            for adjacent in self.graph[vertex]:
+                self.graph[adjacent].remove(vertex)
+            del self.graph[vertex]
+
+    def print_graph(self):
+        for vertex, edges in self.graph.items():
+            print(f"{vertex}: {edges}")
+
+# Example usage
+g = Graph()
+g.add_vertex("A")
+g.add_vertex("B")
+g.add_edge("A", "B")
+g.print_graph()  # A: ['B'] \n B: ['A']
+g.remove_edge("A", "B")
+g.print_graph()  # A: [] \n B: []
+```
+
+### 12. **Disjoint Set (Union-Find)**
+
+- **Description**: A data structure to keep track of a partition of a set into disjoint (non-overlapping) subsets.
+- **Operations**: Find, union.
+
+**Disjoint Set Implementation:**
+```python
+class DisjointSet:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        rootX = self.find(x)
+        rootY = self.find(y)
+
+        if rootX != rootY:
+            if self.rank[rootX] > self.rank[rootY]:
+                self.parent[rootY] = rootX
+            elif self.rank[rootX] < self.rank[rootY]:
+                self.parent[rootX] = rootY
+            else:
+                self.parent[rootY] = rootX
+                self.rank[rootX] += 1
+
+# Example usage
+ds = DisjointSet(5)
+ds.union(0, 1)
+ds.union(1, 2)
+print(ds.find(0))  # 2
+print(ds.find(1))  # 2
+print(ds.find(2))  # 2
+```
+
+### 13. **Bloom Filter**
+
+- **Description**: A probabilistic data structure used to test whether an element is a member of a set. False positives are possible but false negatives are not.
+- **Operations**: Add, check.
+
+**Simple Bloom Filter Implementation:**
+```python
+from bitarray import bitarray
+import hashlib
+
+class BloomFilter:
+    def __init__(self, size, num_hashes):
+        self.size = size
+        self.num_hashes = num_hashes
+        self.bit_array = bitarray(size)
+        self.bit_array.setall(0)
+
+    def _hashes(self, item):
+        hashes = []
+        for i in range(self.num_hashes):
+            hash_value = int(hashlib.md5((item + str(i)).encode()).hexdigest(), 16)
+            hashes.append(hash_value % self.size)
+        return hashes
+
+    def add(self, item):
+        for hash_value in self._hashes(item):
+            self.bit_array[hash_value] = 1
+
+    def check(self, item):
+        return all(self.bit_array[hash_value] for hash_value in self._hashes(item))
+
+# Example usage
+bf = BloomFilter(size=100, num_hashes=3)
+bf.add("test")
+print(bf.check("test"))  # True
+print(bf.check("not_in_bloom"))  # False
+```
+
+### 14. **Skip List**
+
+- **Description**: A probabilistic data structure that allows for fast search, insertion, and deletion operations.
+- **Operations**: Search, insert, delete.
+
+**Simple Skip List Implementation:**
+```python
+import random
+
+class SkipListNode:
+    def __init__(self, value, level):
+        self.value = value
+        self.forward = [None] * (level + 1)
+
+class SkipList:
+    def __init__(self, max_level):
+        self.max_level = max_level
+        self.header = SkipListNode(-1, max_level)
+        self.level = 0
+
+    def random_level(self):
+        level = 0
+        while random.random() < 0.5 and level < self.max_level:
+            level += 1
+        return level
+
+    def insert(self, value):
+        update = [None] * (self.max_level + 1)
+        current = self.header
+
+        for i in range(self.level, -1, -1):
+            while current.forward[i] and current.forward[i].value < value:
+                current = current.forward[i]
+            update[i] = current
+
+        current = current.forward[0]
+        if current is None or current.value != value:
+            new_level = self.random_level()
+            if new_level > self.level:
+                for i in range(self.level + 1, new_level + 1):
+                    update[i] = self.header
+                self.level = new_level
+
+            new_node = SkipListNode(value, new_level)
+            for i in range(new_level + 1):
+                new_node.forward[i] = update[i].forward[i]
+                update[i].forward[i] = new_node
+
+    def search(self, value):
+        current = self.header
+        for i in range(self.level, -1, -1):
+            while current.forward[i] and current.forward[i].value < value:
+                current = current.forward[i]
+        current = current.forward[0]
+        return current is not None and current.value == value
+
+# Example usage
+sl = SkipList(max_level=3)
+sl.insert(3)
+sl.insert(6)
+sl.insert(7)
+sl.insert(9)
+sl.insert(12)
+print(sl.search(3))  # True
+print(sl.search(15))  # False
+```
+
+These implementations cover a broad range of fundamental data structures. Each data structure is used in different scenarios based on its properties and the operations required. Let me know if you need further details or specific implementations!

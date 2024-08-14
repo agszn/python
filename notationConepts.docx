@@ -1,0 +1,75 @@
+In addition to Big O notation, there are several other notations and concepts used to analyze the complexity and performance of algorithms. Here are some of the most common ones:
+
+### 1. **Big Ω Notation (Big Omega)**
+
+- **Definition**: Describes the lower bound of an algorithm's runtime or space complexity. It provides a guarantee that the algorithm will take at least a certain amount of time or space.
+- **Notation**: \( \Omega(f(n)) \)
+- **Use Case**: To represent the best-case scenario or the minimum time/space an algorithm will take.
+
+  **Example**: If an algorithm has a time complexity of \( \Omega(n) \), it means that, in the best case, the algorithm will take at least linear time.
+
+### 2. **Big Θ Notation (Big Theta)**
+
+- **Definition**: Describes the tight bound of an algorithm's runtime or space complexity. It provides a bound that is both an upper and a lower bound.
+- **Notation**: \( \Theta(f(n)) \)
+- **Use Case**: To represent the exact asymptotic behavior of an algorithm.
+
+  **Example**: If an algorithm has a time complexity of \( \Theta(n^2) \), it means that the algorithm's runtime grows quadratically with the input size.
+
+### 3. **Little o Notation**
+
+- **Definition**: Describes an upper bound that is not tight. It provides an upper bound that is not necessarily a tight bound, meaning that the algorithm’s runtime grows slower than \( f(n) \) for sufficiently large \( n \).
+- **Notation**: \( o(f(n)) \)
+- **Use Case**: To show that an algorithm's growth rate is strictly less than \( f(n) \).
+
+  **Example**: If an algorithm has a complexity of \( o(n^2) \), it means that its growth rate is less than \( n^2 \) but not necessarily bounded by \( n^2 \).
+
+### 4. **Little ω Notation**
+
+- **Definition**: Describes a lower bound that is not tight. It provides a lower bound that is not necessarily tight, meaning the algorithm’s runtime grows faster than \( f(n) \) for sufficiently large \( n \).
+- **Notation**: \( \omega(f(n)) \)
+- **Use Case**: To show that an algorithm’s growth rate is strictly more than \( f(n) \).
+
+  **Example**: If an algorithm has a complexity of \( \omega(n) \), it means that its growth rate is greater than \( n \) but not necessarily bounded by \( n \).
+
+### 5. **Amortized Analysis**
+
+- **Definition**: Analyzes the average time complexity per operation over a sequence of operations, providing a more accurate measure of time complexity in scenarios where individual operations have varying costs.
+- **Use Case**: To understand the average time complexity over a sequence of operations rather than worst-case or best-case scenarios.
+
+  **Example**: Dynamic array resizing has an amortized time complexity of \( O(1) \) for append operations, even though resizing itself takes \( O(n) \) time.
+
+### 6. **Average-Case Complexity**
+
+- **Definition**: Represents the expected time complexity of an algorithm averaged over all possible inputs.
+- **Use Case**: To provide an average performance measure rather than just the worst-case or best-case.
+
+  **Example**: In quicksort, the average-case time complexity is \( O(n \log n) \), assuming a good choice of pivots.
+
+### 7. **Worst-Case Complexity**
+
+- **Definition**: Represents the maximum time or space an algorithm will take for any input of size \( n \).
+- **Use Case**: To ensure that the algorithm will perform within a bound regardless of the input.
+
+  **Example**: The worst-case time complexity of quicksort is \( O(n^2) \) when the pivot choices are consistently poor.
+
+### 8. **Best-Case Complexity**
+
+- **Definition**: Represents the minimum time or space an algorithm will take for the best possible input of size \( n \).
+- **Use Case**: To understand the performance of an algorithm under ideal conditions.
+
+  **Example**: The best-case time complexity of insertion sort is \( O(n) \) when the input list is already sorted.
+
+### Summary
+
+- **Big O Notation**: Upper bound (worst-case scenario).
+- **Big Ω Notation**: Lower bound (best-case scenario).
+- **Big Θ Notation**: Tight bound (exact asymptotic behavior).
+- **Little o Notation**: Strictly less than \( f(n) \) (not a tight bound).
+- **Little ω Notation**: Strictly more than \( f(n) \) (not a tight bound).
+- **Amortized Analysis**: Average time over a sequence of operations.
+- **Average-Case Complexity**: Expected time over all possible inputs.
+- **Worst-Case Complexity**: Maximum time for any input.
+- **Best-Case Complexity**: Minimum time for the best possible input.
+
+These notations and analyses help in understanding and comparing the efficiency of algorithms in different scenarios.
